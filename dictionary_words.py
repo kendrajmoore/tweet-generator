@@ -24,7 +24,6 @@ def dictionary(number):
         # i was using this wrong in rearrange.py
         wordsList.append(words[random.randint(0, (len(words) - 1))])
         x += 1
-        # print(*wordsList)
     print(*wordsList)
   
     
