@@ -1,6 +1,6 @@
 import sys
 import random
-from dictionary_histograms import wordsDict
+from dictionary_histograms import words_dict
 
 
 
@@ -14,4 +14,7 @@ def one_word(histogram):
 
 if __name__ == '__main__':
     args = sys.argv[1:]
+    histogram = words_dict(args) # Take in words and create a histogram
+    one_word(histogram)
+
     

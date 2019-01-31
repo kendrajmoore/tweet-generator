@@ -20,7 +20,7 @@ def lowerList(list):
 
 ##dictionary histogram
 
-def wordsDict(list):
+def words_dict(list):
     myDict = {}
     for word in list:
         if word not in myDict:
@@ -46,7 +46,7 @@ def test_histogram():
     words_list = listWords(file)
     clean_list = remove_punc(words_list)
     lower_case_list = lowerList(clean_list)
-    dict = wordsDict(lower_case_list)
+    dict = words_dict(lower_case_list)
     print('Histogramz: {}'.format(dict))
 
 if __name__ == '__main__':
