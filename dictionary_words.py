@@ -1,6 +1,7 @@
 
 import random
 import sys
+import timeit
 
 """The program only accepts one argument: the number of words to be selected.
 All parameters except the number of words will be hard-coded.
@@ -10,6 +11,7 @@ Word selection can be completely random and the word order does not matter."""
 
 
 def file():
+    #should rename this function because not returning a file
     f = open("/usr/share/dict/words", "r")
     words = f.read().split()
     f.close()
