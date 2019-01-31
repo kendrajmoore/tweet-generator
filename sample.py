@@ -12,6 +12,10 @@ def one_word(histogram):
     print(str(histogram[random.randint(0, len(histogram) -1)]))
 
 
+def weighted_histogram(histogram):
+    pass
+
+    
 if __name__ == '__main__':
     args = sys.argv[1:]
     histogram = words_dict(args) # Take in words and create a histogram
