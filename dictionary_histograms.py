@@ -41,7 +41,6 @@ def freqDict(histogram, word):
 
 def test_histogram():
     params = sys.argv[1:]
-
     file = params[0]
     words_list = listWords(file)
     clean_list = remove_punc(words_list)

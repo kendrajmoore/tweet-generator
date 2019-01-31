@@ -12,13 +12,21 @@ def one_word(histogram):
     print(str(histogram[random.randint(0, len(histogram) -1)]))
 
 
-def weighted_histogram(histogram):
-    pass
-
+def weighted_histogram(args):
+    weighted_dict = {}
+    for word in args:
+        if word not in weighted_dict:
+            weighted_dict[word] = 1
+        else:
+            weighted_dict[word] += 1
+    print(weighted_dict)
     
+
+
 if __name__ == '__main__':
     args = sys.argv[1:]
     histogram = words_dict(args) # Take in words and create a histogram
     one_word(histogram)
+    weighted_histogram(histogram)
 
     
