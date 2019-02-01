@@ -1,6 +1,6 @@
 import sys
 
-def listWords(file):
+def list_words(file):
     f = open(file, "r")
     list = f.read().split()
     f.close()
@@ -9,20 +9,20 @@ def listWords(file):
 def remove_punc(list):
     punctuation = ["@" , "#" , "$" , ":", ";", "_", "*" , "}" , "[" , "{" , "]" , "," , ".", "!" , "?"]
     for i, word in enumerate(list):
-        newWord = ''
+        new_word = ''
         for char in word:
             if char not in punctuation:
-                newWord += char
-        list[i] = newWord
+                new_word += char
+        list[i] = new_word
         return list
 
 
-def lowerList(list):
+def lower_list(list):
     list = [x.lower() for x in list]
     return list
 
 
-def wordsTuples(list):
+def words_tuples(list):
     list.sort()
     list = []
     count = 0
@@ -39,10 +39,10 @@ def wordsTuples(list):
         list.pop(0)
     return list
 
-def unique_wordsTuples(histogram):
+def unique_words_tuples(histogram):
     return len(histogram)
 
-def frequencyTuples(histogram, word):
+def frequency_tuples(histogram, word):
     word = word.lower()
     for entry in histogram:
         if entry[0] == word:
@@ -53,7 +53,7 @@ def frequencyTuples(histogram, word):
 def test_histogram():
     params = sys.argv[1:]
     file = params[0]
-    words_list = wordsTuples(list)
+    words_list = words_tuples(list)
     print('Histogramz: {}'.format(words_list))
 
 

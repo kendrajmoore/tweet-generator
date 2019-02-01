@@ -1,7 +1,6 @@
 
 import random
 import sys
-import timeit
 
 """The program only accepts one argument: the number of words to be selected.
 All parameters except the number of words will be hard-coded.
@@ -19,14 +18,14 @@ def file():
 
 
 def dictionary(number):
-    wordsList = []
+    words_list = []
     x = 0
 
     while x < number:
         # i was using this wrong in rearrange.py
-        wordsList.append(words[random.randint(0, (len(words) - 1))])
+        words_list.append(words[random.randint(0, (len(words) - 1))])
         x += 1
-    print(*wordsList)
+    print(*words_list)
   
     
 

@@ -1,7 +1,7 @@
 import sys
 import string
 
-def listWords(file):
+def list_words(file):
     f = open(file, "r")
     list = f.read().split()
     f.close()
@@ -14,25 +14,25 @@ def remove_punc(list):
 
 #not working
 
-def lowerList(list):
+def lower_list(list):
     list = [x.lower() for x in list]
     return list
 
 ##dictionary histogram
 
 def words_dict(list):
-    myDict = {}
+    my_dict = {}
     for word in list:
-        if word not in myDict:
-            myDict[word] = 1
+        if word not in my_dict:
+            my_dict[word] = 1
         else:
-            myDict[word] += 1
-    return myDict 
+            my_dict[word] += 1
+    return my_dict 
 
 def unique_wordsDict(histogram):
     return len(histogram.keys())
 
-def freqDict(histogram, word):
+def freq_dict(histogram, word):
     word = word.lower()
     if word in histogram:
         return histogram[word]
