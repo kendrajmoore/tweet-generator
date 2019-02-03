@@ -1,1 +1,1 @@
-One fish. two fiSh red fish? Blue fish two blue! fish bluet
+[one, fish, two, fish, red, fish, blue, fish]

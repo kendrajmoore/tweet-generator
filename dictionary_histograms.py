@@ -42,9 +42,9 @@ def freq_dict(histogram, word):
 def test_histogram():
     params = sys.argv[1:]
     file = params[0]
-    words_list = listWords(file)
+    words_list = list_words(file)
     clean_list = remove_punc(words_list)
-    lower_case_list = lowerList(clean_list)
+    lower_case_list = lower_list(clean_list)
     dict = words_dict(lower_case_list)
     print('Histogramz: {}'.format(dict))
 

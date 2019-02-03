@@ -1,6 +1,7 @@
 import sys
 import random
 from dictionary_histograms import words_dict
+from list_histograms import words_list
 
 
 
@@ -11,7 +12,10 @@ def one_word(histogram):
     histogram = list(histogram.keys())
     print(str(histogram[random.randint(0, len(histogram) -1)]))
 
+def sort_array(array):
+    return sorted(array)
 
+    
 def weighted_histogram(args):
     weighted_dict = {}
     for word in args:
