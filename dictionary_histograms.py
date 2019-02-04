@@ -7,17 +7,6 @@ def list_words(file):
     f.close()
     return list
 
-#not working
-def remove_punc(list):
-    pass
-    # translator = str.maketrans("@" , "#" , "$" , ":", ";", "_", "*" , "}" , "[" , "{" , "]" , "," , ".", "!" , "?")
-
-#not working
-
-def lower_list(list):
-    list = [x.lower() for x in list]
-    return list
-
 ##dictionary histogram
 
 def words_dict(list):
@@ -29,8 +18,8 @@ def words_dict(list):
             my_dict[word] += 1
     return my_dict 
 
-def unique_wordsDict(histogram):
-    return len(histogram.keys())
+def unique_words_dict(histogram):
+    print(len(histogram.keys()))
 
 def freq_dict(histogram, word):
     word = word.lower()
@@ -39,19 +28,40 @@ def freq_dict(histogram, word):
     else:
         return str(0)
 
-def test_histogram():
+# def test_histogram():
+    #uncomment to make histogram from twilight or one fish text.
+    # params = sys.argv[1:]
+    # file = params[0]
+    # words_list = list_words(file)
+    # dict = words_dict(words_list)
+    # print('Histogramz: {}'.format(dict))
+
+# def get_length():
+#     #uncomment to get unique keys
+#     params = sys.argv[1:]
+#     file = params[0]
+#     words_list = list_words(file)
+#     dict = words_dict(words_list)
+#     unique_keys = unique_words_dict(dict)
+
+def get_frequency():
     params = sys.argv[1:]
     file = params[0]
+    word = params[1] 
     words_list = list_words(file)
-    clean_list = remove_punc(words_list)
-    lower_case_list = lower_list(clean_list)
-    dict = words_dict(lower_case_list)
-    print('Histogramz: {}'.format(dict))
+    dict = words_dict(words_list)
+    frequency = freq_dict(dict, word)
+    print(frequency)
+
+
+
+
 
 if __name__ == '__main__':
-    
-    # print('file: {}'.format(file))
-    # print((wordsDict(lowerList(remove_punc(listWords(file))))))
-    
-    # print((wordsDict(lowerList(remove_punc(listWords(file))))))
-    test_histogram()
+    #uncomment for histogram
+    # test_histogram()
+    #uncomment for histogram
+    #uncomment to get unique keys
+    # get_length()
+    #uncomment to get unique keys
+    get_frequency()

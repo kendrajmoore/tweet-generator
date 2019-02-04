@@ -1,24 +1,11 @@
 import sys
-
+#list histogram
 def list_words(file):
     f = open(file, "r")
     list = f.read().split()
     f.close()
     return list
 
-def remove_punc(list):
-    punctuation = ["@" , "#" , "$" , ":", ";", "_", "*" , "}" , "[" , "{" , "]" , "," , ".", "!" , "?"]
-    for i, word in enumerate(list):
-        new_word = ''
-        for char in word:
-            if char not in punctuation:
-                new_word += char
-        list[i] = new_word
-        return list
-
-def lower_list(list):
-    list = [x.lower() for x in list]
-    return list
 
 def words_list(list):
     list.sort()
@@ -35,7 +22,7 @@ def words_list(list):
     else:
         new_list.append([index, count])
         list.pop(0)
-    return list
+    return new_list
 
 def unique_words_list(histogram):
     return len(histogram)
@@ -43,23 +30,45 @@ def unique_words_list(histogram):
 
 def frequency_list(histogram, word):
     word = word.lower()
-    for entry in histogram:
-        if entry[0] == word:
-            return entry[1]
+    for i in histogram:
+        print(histogram)
+        if i[0] == word:
+            return i[1]
         else: 
             return('Not found')
 
-def test_histogram():
+# def test_histogram():
+#     #print listogram
+#     params = sys.argv[1:]
+#     file = params[0]
+#     words = list_words(file)
+#     list_dict = words_list(words)
+#     print('Histogramz: {}'.format(list_dict))
+
+def get_length():
     params = sys.argv[1:]
     file = params[0]
-    words_lists = words_list(list)
-    print('Histogramz: {}'.format(dict))
+    words = list_words(file)
+    list_dict = words_list(words)
+    unique_keys = unique_words_list(list_dict)
+    print(unique_keys)
+
+def get_frequency():
+    params = sys.argv[1:]
+    file = params[0]
+    word = params[1]
+    words = list_words(file)
+    list_dict = words_list(words)
+    freq = frequency_list(list_dict, word)
+    print(freq)
+
 
 
 if __name__ == '__main__':
-    
-    # print('file: {}'.format(file))
-    # print((wordsDict(lowerList(remove_punc(listWords(file))))))
-    
-    # print((wordsDict(lowerList(remove_punc(listWords(file))))))
-    test_histogram()
+    #print listogram
+    # test_histogram()
+    #print listogram
+    # uncomment to get length
+    # get_length()
+    # uncomment to get length
+    get_frequency()
