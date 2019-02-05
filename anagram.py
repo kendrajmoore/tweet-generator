@@ -1,9 +1,14 @@
 import sys
 import random
 
-def list_words(file):
-    f = open(file, "r")
-    list = f.read().split()
+def get_words():
+    #get words 
+    f = open("/usr/share/dict/words", "r")
+    words = f.read().split()
     f.close()
-    return list
+    return words
 
+
+if __name__ in '__main__':
+    words_list = get_words()
+    

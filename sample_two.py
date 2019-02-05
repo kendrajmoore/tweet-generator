@@ -46,7 +46,7 @@ def word_probability(weighted_histogram, num_trials):
                 not_chosen = False
             else:
                 continue
-    return results
+    print(results)
 
 def logger(file_name, histogram):
     f = open(file_name, "a")
@@ -64,6 +64,10 @@ if __name__ in '__main__':
     params = sys.argv[1:]
     file = params[0]
     words_list = list_words(file)
+    weighted_dict = weighted_list(words_list)
+    probability = word_probability(weighted_dict, num_trials)
+    print(weighted_dict)
+
    
     
     
