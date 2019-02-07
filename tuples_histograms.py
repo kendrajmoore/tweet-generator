@@ -35,12 +35,12 @@ def frequency_tuples(histogram, word):
     else:
         return('Not found')
 
-# def test_histogram():
-#     params = sys.argv[1:]
-#     file = params[0]
-#     words_list = list_words(file)
-#     tuple = words_tuples(words_list)
-#     print('Histogramz: {}'.format(tuple))
+def test_histogram():
+    params = sys.argv[1:]
+    file = params[0]
+    words_list = list_words(file)
+    tuple = words_tuples(words_list)
+    print('Histogramz: {}'.format(tuple))
 
 # def get_length():
 #     params = sys.argv[1:]
@@ -50,19 +50,19 @@ def frequency_tuples(histogram, word):
 #     unique_keys = unique_words_tuples(tuple)
 #     print(unique_keys)
 
-def get_frequency():
-    params = sys.argv[1:]
-    file = params[0]
-    word = params[1]
-    words_list = list_words(file)
-    tuple = words_tuples(words_list)
-    freq = frequency_tuples(tuple, word)
-    print(freq)
+# def get_frequency():
+#     params = sys.argv[1:]
+#     file = params[0]
+#     word = params[1]
+#     words_list = list_words(file)
+#     tuple = words_tuples(words_list)
+#     freq = frequency_tuples(tuple, word)
+#     print(freq)
 
 
 if __name__ == '__main__':
     # #for histogram
-    # test_histogram()
+    test_histogram()
     # #for histogram
     # get_length()
-    get_frequency()
+    # get_frequency()
