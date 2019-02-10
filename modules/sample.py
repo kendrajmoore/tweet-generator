@@ -56,14 +56,7 @@ if __name__ in '__main__':
     #part-one
     print(one_word())
     print(test())
-    # print(one_word(histogramz))
-    #end-part-one
-    #part-two
-    # params = sys.argv[1:]
-    # histogramz = histogram(params)
-    # weights = weighted_list(histogramz)
-    # print(weights)
-    #part-two
+
 
 
     
