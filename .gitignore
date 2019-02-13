@@ -10,6 +10,7 @@ __pycache__/
 
 .pyc
 benchmark.py
+test.py
 
 # C extensions
 *.so
