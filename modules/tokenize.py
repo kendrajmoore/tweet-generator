@@ -1,3 +1,5 @@
+import sys 
+
 def words_list(file):
     "Open the file and make the words into a list to be used by markov"    
     if 'modules' in sys.path[0]:
