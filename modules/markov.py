@@ -32,6 +32,7 @@ if __name__ == "__main__":
     words = words_list(sys.argv[1])
     clean_corups = cleanup(words)
     dictograms = make_dictograms(clean_corups)
+    print(dictograms)
     random_words = []
     for i in range(int(sys.argv[2])//2):
         walk = random_walk(dictograms)

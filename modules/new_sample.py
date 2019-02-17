@@ -2,9 +2,11 @@ import sys
 import random
 
 
-def one_word():
+def one_word(histogram):
      """Take in a histogram, and return one word """
-    histogram_type = str(type())
+   # total number of unique words
+    words = histogram.tokens
+    
     pass
 
 

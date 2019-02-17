@@ -1,7 +1,7 @@
 import sys
 import random
 
-word_list  = "one fish two fish green fish blue fish".split()
+# word_list  = "one fish two fish green fish blue fish".split()
 
 """Your first task is to write a function that takes a histogram (however you've structured yours)
 and returns a single word, at random. It should not yet take into account the distributions of 
