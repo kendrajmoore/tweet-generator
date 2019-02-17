@@ -2,6 +2,7 @@
 from dictogram import Dictogram
 from random import choice
 from sample import one_word
+from histogram import histogram
 
 
 def make_dictograms(words):
@@ -18,7 +19,7 @@ def random_walk(dictogram_of_dictograms):
     "Takes a dictogram and determine the weight"
     key = choice(list(dictogram_of_dictograms))
     dictogram = dictogram_of_dictograms[key]
-    random_weighted_word = one_word()
+    random_weighted_word = one_word(histogram)
 
     return [key, random_weighted_word]
 

@@ -1,62 +1,59 @@
 import sys
 import random
+from histogram import list_words
+from histogram import histogram
 
-# word_list  = "one fish two fish green fish blue fish".split()
+def one_word(histogram):
+    "takes in a histogram and returns a random word"
+    histogram = list(histogram.keys())
+    return str(histogram[random.randint(0, len(histogram)-1)])
 
-"""Your first task is to write a function that takes a histogram (however you've structured yours)
-and returns a single word, at random. It should not yet take into account the distributions of 
-the words. """
+def sort_array(array):
+    "takes in an array and use sort method to sort it"
+    return sorted(array)
 
-def one_word():
-    """Take in a string from the command line, create histogram, and return one word """
-    histo = {}
-    #make a weighted histogram based on word frequency
-    for word in word_list: 
-        if word in histo.keys():
-            histo[word] += 1
+def weighted(histogram):
+    "takes in a histogram and returns word probability"
+    my_dict = {}
+    histogram_keys = list(histogram.keys())
+    histogram_values = list(histogram.values())
+    highest_frequency = 0
+    for i, value in enumerate(histogram_values):
+        if value not in my_dict:
+            my_dict[value] = [histogram_keys[i]]
+            if value > highest_frequency:
+                highest_frequency = value
         else:
-            histo[word] = 1
-
-    count = 0
-    random_number = random.random()
-    for key, value in histo.items():
-        count += (value /len(word_list))
-        if count >= random_number:
-            return key
+            my_dict[value].append(histogram_keys[i])
+    chance = random.uniform(0, highest_frequency / len(histogram_values))
+    histogram_values = sort_array(histogram_values)
+    for value in histogram_values:
+        if value / len(histogram_values) >= chance:
+            return my_dict[value][random.randint(0, len(my_dict[value])-1)]
 
 
-# """Once you have that working, can you prove that your code is truly random?
-#  Granted, proving randomness is much more difficult than disproving it, 
-#  but you can get close. Is the probability that any word is selected the 
-#  same as for any other word?  """
 
-# def weighted_list(histogram):
-#     """ Prove truly random """
-#     count = 0
-#     #Return the next random floating point number in the range [0.0, 1.0).
-#     random_number = random.random()
-#     #method returns a view object that displays a list of dictionary's (key, value) tuple pairs.
-#     for key, value in histogram.items():
-#         count += (value / len(params))
-#         if count >= random_number:
-#             return key
-
-def test():
-    histogram = {}
-    for i in range(0, 10000):
-        word = one_word()
-        if word in histogram:
-            histogram[word] += 1
-        else:
-            histogram[word] = 1
-    return histogram
+# def test():
+#     histogram = {}
+#     for i in range(0, 10000):
+#         word = one_word()
+#         if word in histogram:
+#             histogram[word] += 1
+#         else:
+#             histogram[word] = 1
+#     return histogram
 
 
 
 if __name__ in '__main__':
-    #part-one
-    print(one_word())
-    print(test())
+    params = sys.argv[1:]
+    file = params[0]
+    words_list = list_words(file)
+    gram = histogram(words_list)
+    probability = weighted(gram)
+    print(probability)
+    
+
 
 
 
