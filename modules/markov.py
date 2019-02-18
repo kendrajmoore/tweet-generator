@@ -38,7 +38,7 @@ if __name__ == "__main__":
     for i in range(int(sys.argv[2])//2):
         walk = random_walk(dictograms)
         random_words.append(walk[0])
-        random_words.append(walk[1])
+        # random_words.append(walk[1])
 
     # print some test results
     print(random_words)
