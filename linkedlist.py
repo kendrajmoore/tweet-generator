@@ -16,6 +16,7 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
+        self.list_length = 0
         # Append given items
         if items is not None:
             for item in items:
@@ -95,14 +96,17 @@ class LinkedList(object):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        current_node = self.head
-        quality_data = False
-        # results = []
-        while current_node and quality_data is False:
-            if current_node(data) is True:
-                quality_data = True
-                return current.data
-            current = current.next
+        for data in self.items():
+            if quality(data) is True:
+                node = self.head
+                while node is not None:
+                    if node.data == data:
+                        return node.data
+                    node = node.next
+                else:
+                    continue
+        return None
+    
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -115,19 +119,56 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
-        current = self.head
-        previous = None
-        found = False
-        while current and found is False:
-            if current.data == item:
-                found = True
-            else:
-                self.head = node.next
-            if node.next is None:
-                self.tail = previous
-            found = True
-        if not found:
-            raise ValueError('Item not found: {}'.format(item))
+        if self.is_empty():
+           raise ValueError("Item not found: {}".format(item))
+        else:
+            traversing = True
+            previous_node = None
+            current_node = self.head
+            while traversing:
+                if item == current_node.data:
+                    if previous_node:
+                        if self.tail == current_node:
+                            previous_node.next = None
+                            self.tail = previous_node
+                        else:
+                            previous_node.next = current_node.next
+                    else:
+                        if self.tail == self.head:
+                            self.head = None
+                            self.tail = None
+                        else:
+                            self.head = current_node.next
+                    traversing = False
+                    self.list_length -= 1
+                else:
+                    if current_node.next is None:
+                        raise ValueError('Item not found: {}'.format(item))
+                    else:
+                        previous_node = current_node
+                        current_node = current_node.next
+            return current_node.data
+        
+       
+       
+       
+        # previous = None
+        # found = False
+        # node = self.head
+        # while not found and node is not None:
+        #     if node.data == item:
+        #         if previous is not None:
+        #             previous.next = node.next
+        #         else:
+        #             self.head = node.next
+        #         if node.next is None:
+        #             self.tail = previous
+        #         found = True
+        #     previous = node
+        #     node = node.next
+        #     if not found:
+        #         raise ValueError('Item not found: {}'.format(item))
+
 
 
 
