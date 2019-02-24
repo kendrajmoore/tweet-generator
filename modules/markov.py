@@ -35,10 +35,9 @@ if __name__ == "__main__":
     dictograms = make_dictograms(clean_corups)
     print(dictograms)
     random_words = []
-    for i in range(int(sys.argv[2])//2):
+    for i in range(int(sys.argv[2])):
         walk = random_walk(dictograms)
         random_words.append(walk[0])
-        # random_words.append(walk[1])
 
     # print some test results
     print(random_words)
