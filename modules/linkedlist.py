@@ -47,11 +47,12 @@ class LinkedList(object):
         return items  # O(1) time to return list
 
     def is_empty(self):
+        """O(1) because you only have to chec if the head node exists """
         """Return a boolean indicating whether this linked list is empty."""
         return self.head is None
 
     def length(self):
-        """Return the length of this linked list by traversing its nodes."""
+        """O(n) loop through the nodes to count the nodes. Return the length of this linked list by traversing its nodes."""
         current = self.head
         count = 0
         while current:
@@ -61,7 +62,7 @@ class LinkedList(object):
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1), we only change the last node(tail) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
         new_node = Node(item)
@@ -75,7 +76,7 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(1) Why and under what conditions?"""
+        TODO: Running time: O(1), we never loop through all nodes Why and under what conditions?"""
         """As for time complexity, this implementation of insert is constant O(1) 
         (efficient!). This is because the insert method, no matter what, will always 
         take the same amount of time: it can only take one data point, it can only ever 
@@ -94,8 +95,8 @@ class LinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1) If it is the first item, Why and under what conditions?
+        TODO: Worst case running time: O(n) If you have to go through the entire list, Why and under what conditions?"""
         for data in self.items():
             if quality(data) is True:
                 node = self.head
@@ -110,8 +111,8 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1), the item can be in the front Why and under what conditions?
+        TODO: Worst case running time: O(n) Why and under what conditions?"""
         """The time complexity for delete is also O(n), because in the worst 
         case it will visit every node, interacting with each node a fixed number of 
         times. """
