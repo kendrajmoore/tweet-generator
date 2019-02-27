@@ -54,7 +54,7 @@ class HashTable(object):
         return all_items # O(1)
 
     def length(self):
-        #I need help is this O(n ^ 2)
+        #I need help is this O(n)
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all buckets
