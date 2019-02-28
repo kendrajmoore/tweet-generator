@@ -79,8 +79,8 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user get failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
         index = self._bucket_index(key) # O(1)
-        bucket = self.buckets[index] # O(1)
-        entry = bucket.find(lambda kv: kv[0] == key) #O(n)
+        bucket = self.buckets[index] # O(1), an array no other way to build
+        entry = bucket.find(lambda kv: kv[0] == key) #O(l), where l is the bucket.length()
         if entry is not None:
             return entry[1] 
         else:
@@ -88,23 +88,23 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(n), loop through the linked list to find value. O(1) if earlier node"""
+        TODO: Running time: O(n) : 2l, loop through the linked list to find value. O(1) if earlier node"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
         index = self._bucket_index(key) # O(1)
         bucket = self.buckets[index]  # O(1)
-        entry = bucket.find(lambda kv: kv[0] == key) #O(n)
+        entry = bucket.find(lambda kv: kv[0] == key) #O(l)
         if entry is not None:
-            bucket.delete(entry) # O(1)
+            bucket.delete(entry) # O(l)
             self.size -= 1 # O(1)
         bucket.append((key, value))  # O(1)
         self.size += 1  # O(1)
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(n) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, delete entry associated with given key

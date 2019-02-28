@@ -8,5 +8,13 @@ from modules import linkedlist
 
 @app.route('/')
 def main():
+    app.config["TRAP_BAD_REQUEST_ERRORS"] = True
+    app.run(debug=True)
+    print("Hello?????")
     return render_template('index.html')
 
+# so that you do not have restart the app to debug
+if __name__ == "__main__":
+    app.config["TRAP_BAD_REQUEST_ERRORS"] = True
+    app.run(debug=True)
+    print("Hello?????")

@@ -1,5 +1,10 @@
-body {
-    background-image: url('https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB1eqP59fgAhUEnZ4KHeKDDSkQjRx6BAgBEAU&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F485403666076620068%2F&psig=AOvVaw02KWYCiggQpazi468iV4TT&ust=1551215749095238')
+.yolo {
+
+    width: 100%;
+    height: auto;
+    background-image: url('img/twilight-background.png');
+    background-size: cover;
+    background: red;
 }
 
 h1 {
