@@ -1,36 +1,26 @@
-import string
+import sys
+import re
+import random
+#step one
 
-def cleanup(words):
-    "Takes in a list of words and removes punctuation "
-    #takes that list and removes spaces, punc, and numbers
-    translation = str.maketrans('', '', '''!"#$%&()*+,./:;<=>?@[\]^_`{|}~`1234567890''')
-    # print(translation)
-    words[:] = [i.replace(' ', '') for e in words for i in e.split('--')]
+def cleanup(file):
+    words = open(file, 'r').read().lower()
     # print(words)
-    letters = [i + '.' for i in string.ascii_uppercase]
-    # print(letters)
-    letter_words = ['a', 'i']
-    # print(letter_words)
-    abbreviations3 = ['dr.', 'mr.']
-    abbreviations4 = ['mrs.', 'ms.']
-    words[:] = [i for i in words if i[-2:] not in letters and
-                i[-3:].lower() not in abbreviations3 and
-                i[-4:].lower() not in abbreviations4 and
-                not (len(i) == 1 and i.lower() not in
-                        letter_words)]
-    words[:] = [i.translate(translation).lower().lstrip(
-        "'").rstrip("'") for i in words]
-    
-    return words
-
-
+    remove_periods = re.sub(r"\." , " STOP START ", words)
+    # print(remove_periods)
+    remove_punctuation = re.sub(r"\W", " " , remove_periods)
+    # print(remove_punctuation)
+    word_list = remove_punctuation.split()
+    # print(word_list)
+    if word_list[(len(word_list)-1)] == 'START':
+        word_list.pop()
+    if word_list[0] != 'START':
+        word_list.insert(0, 'START')
+    return word_list
 
 if __name__ == "__main__":
-    import sys
-    from tokenize import words_list
-    words = words_list(sys.argv[1])
-    clean_corpus = cleanup(words)
-    # print(clean_corpus)
-
-    for word in clean_corpus:
-        print(word)
+    params = sys.argv[1:]
+    file = params[0]
+    texts = cleanup(file)
+    print(texts)
+   

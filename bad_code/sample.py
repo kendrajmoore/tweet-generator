@@ -28,3 +28,5 @@ if __name__ == "__main__":
     # print(value)
     weight = weighted_random(histo, value)
     print(weight)
+
+   
