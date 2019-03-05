@@ -54,12 +54,15 @@ class HashTable(object):
         return all_items # O(1)
 
     def length(self):
-        #I need help is this O(n)
+        #Get the average # entries/ # buckets
+        #This is the load factor or  aka l average length of each bucket
+        #I need help is this O(b*l) actually o(n) where n is number of entries
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all buckets
         # TODO: Count number of key-value entries in each bucket
         return sum(bucket.length() for bucket in self.buckets)
+         #buckets = b
 
 
     def contains(self, key):
@@ -93,8 +96,8 @@ class HashTable(object):
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
-        index = self._bucket_index(key) # O(1)
-        bucket = self.buckets[index]  # O(1)
+        index = self._bucket_index(key) # use the hash function, to get code, divide by number of bucketO(1)
+        bucket = self.buckets[index]  # use array method to find it, that number * address becaue know the block size, O(1)
         entry = bucket.find(lambda kv: kv[0] == key) #O(l)
         if entry is not None:
             bucket.delete(entry) # O(l)
@@ -104,7 +107,7 @@ class HashTable(object):
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(n) Why and under what conditions?"""
+        TODO: Running time: O(l) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, delete entry associated with given key
@@ -112,13 +115,16 @@ class HashTable(object):
         # Hint: raise KeyError('Key not found: {}'.format(key))
         index = self._bucket_index(key) # O(1)
         bucket = self.buckets[index] # O(1)
-        entry = bucket.find(lambda kv: kv[0] == key) #O(n)
-        if entry is not None:
-            bucket.delete(entry) # O(1)
+        entry = bucket.find(lambda kv: kv[0] == key) #O(l)
+        if entry is not None: # o(1)
+            #need to delete value in the linked list
+            bucket.delete(entry) # O(l)
             self.size -= 1 # O(1)
         else:
             raise KeyError('Key not found: {}'.format(key)) # O(1)
 
+#n = # key value entries
+#b = # buckets(linked lists)
 
 def test_hash_table():
     ht = HashTable()
