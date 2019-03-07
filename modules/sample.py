@@ -1,30 +1,43 @@
 import random
-import sys 
-import cleanup
-import tokenize
-import tweet_histogram
-#four
+import sys
+
+def list_words(file):
+    """Open a file and turn the text into a list """
+    with open(file, 'r') as f:
+       list = f.read().split()
+    return list
 
 
-def sum_value(hist):
-    dict_total = int((sum(hist.values())))
-    return dict_total
+def histogram(word_list):
+    dict = {}
+    for word in word_list:
+        if word not in dict:
+            dict[word] = 1
+        else:
+            dict[word] += 1
+    return dict
 
-# takes a histogram and returns a weighted probabibility
-def weighted_random(hist, total):
-    destination = random.randint(0, total)
-    for word in hist:
-        destination = destination - hist[word]
-        if destination <= 0:
-            return word
 
-if __name__ == "__main__":
-    params = sys.argv[1:]
-    file = params[0]
-    words = cleanup.cleanup(file)
-    histo = tweet_histogram.dictogram_words(words)
-    # print(histo)
-    value = sum_value(histo)
-    # print(value)
-    weight = weighted_random(histo, value)
-    print(weight)
+
+def weighted_sample(dict):
+    word_choice = random.randint(1, sum(dict.values()))
+    weights = 0
+    for key in dict:
+        weights += dict[key]
+        if word_choice <= weights:
+            return key
+
+
+def frequency_test(hist, list):
+    """Takes in the histogram, runs the weighted random selection function on it to generate a list of relative probabilities associated with each word"""
+    temp_word_list = []
+    for i in range(100000):
+        select_word = weighted_sample(hist, list)
+        temp_word_list.append(select_word)
+    frequency_list = histogram(temp_word_list)
+    for key in frequency_list:
+        frequency_list[key] = frequency_list[key]/len(temp_word_list)
+        # frequency_list[key] = frequency_list[key]
+
+    print(frequency_list)
+

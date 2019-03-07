@@ -1,78 +1,95 @@
-import sys 
-import cleanup
-import sample
-import sentence
-import dictogram
+
+import re
+import string
 import random
+from dictogram import Dictogram
 
-def markov(list):
-    markov_dict = {}
-    for index in range(len(list) - 1):
-        word = list[index]
-        if index in markov_dict:
-            markov_dict[words].add_count([list[index + 1]])
-        else:
-            markov_dict[words] = dictogram.Dictogram([list[index + 1]])
-    return markov_dict
+def open_file(file):
+    '''
+    Returns a list of words in the whole textfile
+    '''
+    with open(file, 'r') as f:
+        content_of_file = f.read()
+        content_of_file = content_of_file.replace(".", "").replace(",", "").replace("*", "").replace(string.punctuation, "").replace("?", "").replace("!", "").replace(";", "").replace(":", "").replace('“', "").replace('”', "").replace('-', "")
 
-    def markov_norder(order, list):
-        markov_dict = {}
-        for index in range(len(list) - order):
-            word = tuple(list[index: index + order])
-            if word in markov_dict:
-                markov_dict[words].add_count([list[index + order]])
+    array = content_of_file.split()
+    return array
+
+
+def markov_chain(file):
+    '''
+    Creates the markov model as such: {'one': {'fish': 1}, 'fish': {'two': 1, 'red': 1, 'blue': 1},
+                                       'two': {'fish': 1}, 'red': {'fish': 1}, 'blue': {'fish': 1}}
+    '''
+    histogram = {}
+
+    # create this >>> {'one': {}, 'fish': {}, 'two': {}, 'red': {}, 'blue': {}}
+    for word in file:   # is a single string of the word
+        if word not in histogram:
+            histogram[word] = {}
+
+    # adds in the nested histogram
+    index = 0
+    for word in file:
+        if index + 1 < len(file):
+            next_word = file[index+1]
+            if next_word in histogram[word].keys():
+                histogram[word][next_word] += 1
             else:
-                markov_dict[words] = dictogram.Dictogram([list[index + order]])
-        return markov_dict
+                histogram[word][next_word] = 1
+            index += 1
 
-def start_token(model):
-    start_tokens = []
-    for key in model:
-        if key[0] == "START":
-            start_tokens.append(key)
-    token = random.choice(start_tokens)
-    return token
-
-def stop_tokens(dict):
-    stop_tokens = []
-    for key, value in dict.items():
-        if key[1] == 'STOP':
-            stop_tokens.append(key)
-    return stop_tokens
-
-def walk(start_token, dict):
-    sentence = ['START', start_token[1]]
-    while sentence[len(sentence) -1] != 'STOP':
-        words = (sentence[len(sentence) - 2], sentence[len(sentence)-1])
-        hist = dict[tuple(words)]
-        next_word = sample.weighted_random(hist, sample.sum_value(hist))
-        sentence.append(next_word)
-    return sentence
-
-def final(sentence):
-    sentence.pop(0)
-    sentence.pop()
-    sentence[0] = sentence[0].capitalize()
-    word_string = ''
-    word_string = word_string.join(' '+ word for word in sentence) + '.'
-    return word_string
+    return histogram
 
 
 
+def generate_start_word(chain):
+    '''
+    Returns a random starting word
+    TODO: Make more accurate by selecting words from a text file that is the *start* words in different sentences
+    '''
+    worddd = random.choice(list(chain.keys()))      # python3: need to change this to a list to use indexing on it
+
+    return worddd
+
+
+def generate_sentence(chain):
+    '''
+    Generates a random sentence from the main markov chain model
+    Generates a sentence with the input length of words
+    '''
+    length = 15
+    starting_word = generate_start_word(chain)
+    sentence = [starting_word]
+
+    for i in range(length-1):
+        dict_of_following = chain[starting_word]
+        sentence.append(generate_start_word(chain[sentence[i]]))
+
+
+    my_string = " ".join(sentence)
+    return my_string
+
+
+def pick_rand_word(dict):
+    '''
+    Picks a random word from the nested dict that contains the following words
+    (code from sample.py)
+    '''
+    total_count = len(dict)
+    print(total_count)
+    cumulative_probability = 0
+    randomized = random.random()
+
+    for key in dict:
+        cumulative_probability += dict[key] / total_count
+        if cumulative_probability > randomized:
+            return key
 
 
 
 if __name__ == '__main__':
-    params = sys.argv[1:]
-    file = params[0]
-    words = cleanup.cleanup(file)
-    # histo = tweet_histogram.dictogram_words(words)
-    # file1 = argv[1]  #file to analyze
-    # words = cleanup.cleanup(file1)
-    # m_chain = markov(2, words)
-    m_chain = markov(words)
-    print(m_chain)
-    # c_start = start_token(m_chain)
-    # walk_the_dog = walk(c_start, m_chain)
-    # print(finalize(walk_the_dog))
+    longer_model = markov_chain(open_file('twilight.txt'))
 
+    # print(generate_sentence(10, longer_model))
+    print(generate_sentence(longer_model))
