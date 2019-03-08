@@ -1,3 +1,7 @@
+""" code and app structure based on Edwin C. tweet gen """
+
+#bash start.sh
+
 from flask import Flask, render_template, jsonify
 from modules.app import random_markov_sentence
 
@@ -11,4 +15,4 @@ def main_page():
 
 @app.route('/new_sentence', methods=['GET'])
 def new_sentence():
-  return jsonify(random_markov_sentence('dracula'))
+  return jsonify(random_markov_sentence('twilight-two'))

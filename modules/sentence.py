@@ -1,12 +1,8 @@
+
 def generate_sentence(words):
-    '''Takes a list of random weighted words and generates a sentence'''
-     # Capitalize first word
+    """Generates a tweet and capitializes first letter """
     words[0] = words[0].capitalize()
-
-    # save sentence as a variable to return later
     sentence = ' '.join(words)+'.'
-
-    # return random words
     return sentence
 
 if __name__ == '__main__':
