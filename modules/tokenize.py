@@ -1,20 +1,26 @@
+
 import sys
-import cleanup
-#step two
 
+def get_words(file_name):
+    '''Opens file and returns list of words in file'''
 
-def unique_words(words):
-    unique_words = []
-    for word in words:
-        if word not in unique_words:
-            unique_words.append(word)
-    return unique_words
+    # set path depending on where script is run from
+    if 'modules' in sys.path[0]:
+        path = 'corpuses/'
+    else:
+        path = 'modules/corpuses/'
 
+    # open the file safely
+    with open(path + file_name + '.txt') as file:
+        words = file.read().split()
 
-if __name__ == "__main__":
-    params = sys.argv[1:]
-    file = params[0]
-    word_list = cleanup.cleanup(file)
-    # print(word_list)
-    unique_word_list = unique_words(word_list)
-    print(unique_word_list)
+    # return the file as a list of words
+    return words
+
+if __name__ == '__main__':
+    import sys
+    words = get_words(sys.argv[1])
+
+    # print words in text
+    for word in words: 
+        print(word)
