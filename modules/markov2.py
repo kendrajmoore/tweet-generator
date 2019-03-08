@@ -11,10 +11,11 @@ def generate_dictograms(words, nth=4):
         if key not in dictograms:
             dictograms[key] = Dictogram()
         dictograms[key].add_count(words[index+nth])
+        # print(dictograms)
     return dictograms
 
 def random_walk(dict_of_dictograms):
-    """ Takes a random """
+    """ Takes a walk to return random word"""
     from random import choice
     from modules.sample import get_random_word
     key = choice(list(dict_of_dictograms))
@@ -23,6 +24,7 @@ def random_walk(dict_of_dictograms):
 
     words = list(key)
     words.append(random_weighted_word)
+    # print(words)
     return words
 
 if __name__ == '__main__':

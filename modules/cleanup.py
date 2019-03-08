@@ -28,6 +28,7 @@ if __name__ == '__main__':
     from tokenize import get_words
     words = get_words(sys.argv[1])
     cleaned_words = clean(words)
+    print(cleaned_words)
 
     # print cleaned up word list
     for word in cleaned_words:

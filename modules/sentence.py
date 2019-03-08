@@ -2,7 +2,9 @@
 def generate_sentence(words):
     """Generates a tweet and capitializes first letter """
     words[0] = words[0].capitalize()
+    print(words[0])
     sentence = ' '.join(words)+'.'
+    # print(sentence)
     return sentence
 
 if __name__ == '__main__':
